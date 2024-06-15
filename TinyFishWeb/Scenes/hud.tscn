@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://ct68mwn5qmw7c"]
+
+[ext_resource type="Script" path="res://Scripts/HUD.gd" id="1_tuw41"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_f18l2"]
+font_size = 266
+
+[sub_resource type="Theme" id="Theme_j2nlj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ps3ix"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4xsa"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -181.0
+offset_top = -403.0
+offset_right = 181.0
+offset_bottom = 403.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_tuw41")
+
+[node name="Score" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.65098)
+light_mask = 512
+visibility_layer = 512
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.5
+offset_top = -66.0
+offset_right = 27.5
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = SubResource("LabelSettings_f18l2")
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0.835294)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -282.5
+offset_top = -402.5
+offset_right = 282.5
+offset_bottom = 402.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_j2nlj")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ps3ix")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(181, 401)
+scale = Vector2(28.44, 41.08)
+shape = SubResource("RectangleShape2D_v4xsa")

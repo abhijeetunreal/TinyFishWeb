@@ -1,0 +1,191 @@
+[gd_scene load_steps=16 format=3 uid="uid://bsl33oklscxcf"]
+
+[ext_resource type="Script" path="res://Scripts/spike.gd" id="1_qkto6"]
+[ext_resource type="Texture2D" uid="uid://bvetuf1qfmu1k" path="res://Assets/Rope/rope (1).PNG" id="2_03ry1"]
+[ext_resource type="Texture2D" uid="uid://b5vunlunxaonj" path="res://Assets/Rope/rope (2).PNG" id="3_ybr4i"]
+[ext_resource type="Texture2D" uid="uid://bohc51f0bgv2x" path="res://Assets/Rope/rope (3).PNG" id="4_tubak"]
+[ext_resource type="Texture2D" uid="uid://6bm744mjviqe" path="res://Assets/Rope/rope (4).PNG" id="5_1bhpl"]
+[ext_resource type="Texture2D" uid="uid://blli4ojqrd8sw" path="res://Assets/Rope/rope (5).PNG" id="6_imuew"]
+[ext_resource type="Texture2D" uid="uid://v7t2545j6djx" path="res://Assets/Rope/rope (6).PNG" id="7_6s5gi"]
+[ext_resource type="Texture2D" uid="uid://cy10c32tqrpml" path="res://Assets/Rope/rope (7).PNG" id="8_465i0"]
+[ext_resource type="Texture2D" uid="uid://bwcy6jq3rrk6j" path="res://Assets/Rope/rope (8).PNG" id="9_jnytd"]
+[ext_resource type="Texture2D" uid="uid://vowx2l4q7ust" path="res://Assets/Rope/rope (9).PNG" id="10_q2eh7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hay8h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_03ry1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ybr4i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tubak")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1bhpl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_imuew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6s5gi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_465i0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_jnytd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_q2eh7")
+}],
+"loop": true,
+"name": &"rope",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3uhhe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_03ry1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ybr4i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tubak")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1bhpl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_imuew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6s5gi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_465i0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_jnytd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_q2eh7")
+}],
+"loop": true,
+"name": &"ropeanim",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_ikvy2"]
+resource_name = "spikedown"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("hand_down:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(474, 911), Vector2(465, 444)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hand_up:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(466, -817), Vector2(466, -124)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p5qos"]
+_data = {
+"spikedown": SubResource("Animation_ikvy2")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8n5j"]
+
+[node name="Spike" type="Area2D"]
+z_index = -2
+position = Vector2(-207, 129)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_qkto6")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+position = Vector2(363, -176)
+build_mode = 1
+polygon = PackedVector2Array(7, -206, 12, 181, -12, 196, -4, 228, 51, 228, 57, 201, 37, 179, 35, -208)
+
+[node name="Polygon2D" type="Polygon2D" parent="CollisionPolygon2D"]
+polygon = PackedVector2Array(9, -208, 35, -208, 37, 178, 57, 201, 50, 229, -4, 228, -12, 197, 13, 180)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+visible = false
+position = Vector2(403, 554)
+rotation = 3.14159
+build_mode = 1
+polygon = PackedVector2Array(10, 33, 12, 181, -12, 196, -4, 228, 51, 228, 57, 201, 37, 179, 41, 33)
+
+[node name="Polygon2D" type="Polygon2D" parent="CollisionPolygon2D2"]
+polygon = PackedVector2Array(5.99988, -97, 40.9999, -93, 37, 178, 57, 201, 50, 229, -4, 228, -12, 197, 13, 180)
+
+[node name="hand_down" type="AnimatedSprite2D" parent="."]
+position = Vector2(469.5, 677.5)
+rotation = 3.14159
+scale = Vector2(0.268644, 0.282317)
+sprite_frames = SubResource("SpriteFrames_hay8h")
+animation = &"rope"
+autoplay = "rope"
+frame_progress = 0.123648
+
+[node name="Area2D" type="Area2D" parent="hand_down"]
+rotation = -1.63014
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="hand_down/Area2D"]
+polygon = PackedVector2Array(-658.999, -16.7783, -658.781, -80.1577, 1340.98, 64.7529, 1334.58, 112.849)
+
+[node name="hand_up" type="AnimatedSprite2D" parent="."]
+position = Vector2(466, -470.5)
+rotation = -6.28319
+scale = Vector2(0.268644, 0.282317)
+sprite_frames = SubResource("SpriteFrames_3uhhe")
+animation = &"ropeanim"
+autoplay = "ropeanim"
+flip_h = true
+
+[node name="Area2D2" type="Area2D" parent="hand_up"]
+position = Vector2(-7.44469, -46.0474)
+rotation = 1.5708
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="hand_up/Area2D2"]
+polygon = PackedVector2Array(-634.039, 14.8896, -623.413, -26.0571, 704.881, -59.5586, 722.592, -3.72266)
+
+[node name="RopeDown" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p5qos")
+}
+
+[node name="ropeDetect" type="Area2D" parent="."]
+position = Vector2(481, 175)
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ropeDetect"]
+shape = SubResource("RectangleShape2D_k8n5j")
+
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="area_entered" from="ropeDetect" to="." method="_on_rope_detect_area_entered"]

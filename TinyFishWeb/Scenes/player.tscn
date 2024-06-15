@@ -1,0 +1,99 @@
+[gd_scene load_steps=10 format=3 uid="uid://ux6wi3l16oqr"]
+
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_qvbnj"]
+[ext_resource type="Texture2D" uid="uid://bjhnb5jhkqkri" path="res://Assets/Fish/fish-1.PNG" id="2_kt00x"]
+[ext_resource type="Texture2D" uid="uid://dpswm4k4tjhin" path="res://Assets/Fish/fish-2.PNG" id="3_fwa1u"]
+[ext_resource type="Texture2D" uid="uid://cpbsobwc47l5g" path="res://Assets/Fish/fish-3.PNG" id="4_1fwaf"]
+[ext_resource type="Texture2D" uid="uid://dct372tgl2vm" path="res://Assets/Fish/fish-4.PNG" id="5_1cjaa"]
+[ext_resource type="Texture2D" uid="uid://vvh2jta3xy8q" path="res://Assets/Fish/fish-5.PNG" id="6_thlgc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_41q0m"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ubtjn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_kt00x")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_kt00x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fwa1u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1fwaf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1cjaa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_thlgc")
+}],
+"loop": false,
+"name": &"tapAnimation",
+"speed": 5.0
+}]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v3aoa"]
+particle_flag_disable_z = true
+gravity = Vector3(-50, -50, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_max = 5.0
+anim_speed_min = 0.83
+anim_speed_max = 0.83
+
+[node name="Player" type="RigidBody2D"]
+z_index = -2
+position = Vector2(151, 387)
+gravity_scale = 0.7
+script = ExtResource("1_qvbnj")
+
+[node name="Fish" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="Plane" type="Sprite2D" parent="Fish"]
+visible = false
+position = Vector2(11, 8)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_kt00x")
+
+[node name="Area2D" type="Area2D" parent="Fish/Plane"]
+collision_mask = 10
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fish/Plane/Area2D"]
+polygon = PackedVector2Array(10, 140, 110, 80, 140, 50, 150, 0, 150, -40, 120, -90, -19.9999, -150, -59.9999, -40, -130, -80, -130, 80, -59.9999, 30)
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(4, 5)
+scale = Vector2(28.6176, 41.8738)
+shape = SubResource("RectangleShape2D_41q0m")
+
+[node name="FishAnimation" type="AnimatedSprite2D" parent="."]
+position = Vector2(11, 8)
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_ubtjn")
+animation = &"tapAnimation"
+speed_scale = 2.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(0.854902, 0.854902, 0.854902, 0.47451)
+position = Vector2(5, 9)
+amount = 6
+process_material = SubResource("ParticleProcessMaterial_v3aoa")
+
+[connection signal="area_entered" from="Fish/Plane/Area2D" to="." method="_on_area_2d_area_entered"]

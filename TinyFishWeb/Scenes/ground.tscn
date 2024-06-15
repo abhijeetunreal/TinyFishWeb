@@ -1,0 +1,165 @@
+[gd_scene load_steps=26 format=3 uid="uid://bwj1k38qxu8lg"]
+
+[ext_resource type="Shader" path="res://Shader/ground5.gdshader" id="1_4ttxy"]
+[ext_resource type="Shader" path="res://Shader/ground2.gdshader" id="1_8hwvl"]
+[ext_resource type="Shader" path="res://Shader/ground4.gdshader" id="1_52xi6"]
+[ext_resource type="Shader" path="res://Shader/ground.gdshader" id="1_easqb"]
+[ext_resource type="Shader" path="res://Shader/ground3.gdshader" id="1_f88e0"]
+[ext_resource type="Texture2D" uid="uid://carkcri1o8r0w" path="res://Assets/Flora/flora1.PNG" id="3_5h5a6"]
+[ext_resource type="Shader" path="res://Shader/bubble.gdshader" id="11_1mhuy"]
+[ext_resource type="Shader" path="res://Shader/bubble2.gdshader" id="13_6d25a"]
+[ext_resource type="Texture2D" uid="uid://pp0bluhdcdfe" path="res://Assets/Ground/g6.svg" id="15_1ng5h"]
+[ext_resource type="Texture2D" uid="uid://bec16vfh2jxl5" path="res://Assets/Bubble/Bubble3.svg" id="15_xsy0o"]
+[ext_resource type="Texture2D" uid="uid://dy8bsfinr6uk1" path="res://Assets/Bubble/Bubble4.svg" id="16_d7l1n"]
+[ext_resource type="Texture2D" uid="uid://cfw28v11tlkl0" path="res://Assets/Ground/g4.svg" id="16_trt2q"]
+[ext_resource type="Texture2D" uid="uid://dqbawn78g5x6b" path="res://Assets/Ground/g3.svg" id="17_iovbe"]
+[ext_resource type="Texture2D" uid="uid://ixxyd23pubj0" path="res://Assets/Ground/g2.svg" id="18_a1msd"]
+[ext_resource type="Texture2D" uid="uid://cyy27gdgw8ugl" path="res://Assets/Ground/g1.svg" id="19_0axio"]
+
+[sub_resource type="Animation" id="Animation_7lhuo"]
+resource_name = "groundcc"
+length = 60.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight2D:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 5, 10, 15, 20, 25, 30, 35, 40, 45.1, 50.1, 59.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0.760784, 0.929412, 1), Color(1, 1, 1, 1), Color(0, 0.643137, 0.247059, 1), Color(0.976471, 0, 0.376471, 1), Color(0, 0, 0, 1), Color(0.988235, 0.407843, 0, 1), Color(0.807843, 0.0117647, 0.141176, 1), Color(0.592157, 0.533333, 1, 1), Color(0.623529, 0.631373, 0.635294, 1), Color(0.545098, 0.439216, 0.0156863, 1), Color(1, 1, 1, 1), Color(0, 0.478431, 0.721569, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_br6fr"]
+_data = {
+"groundcc": SubResource("Animation_7lhuo")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ldti"]
+shader = ExtResource("1_easqb")
+shader_parameter/direction = Vector2(0.1, 0)
+shader_parameter/speed_scale = 0.6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_58qqi"]
+shader = ExtResource("1_4ttxy")
+shader_parameter/direction = Vector2(0.1, 0)
+shader_parameter/speed_scale = -0.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jeiwd"]
+shader = ExtResource("1_52xi6")
+shader_parameter/direction = Vector2(0.1, 0)
+shader_parameter/speed_scale = -0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2phul"]
+shader = ExtResource("1_f88e0")
+shader_parameter/direction = Vector2(0.1, 0)
+shader_parameter/speed_scale = 0.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fdmvi"]
+shader = ExtResource("1_8hwvl")
+shader_parameter/direction = Vector2(0.1, 0)
+shader_parameter/speed_scale = 0.4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i5l2t"]
+shader = ExtResource("1_easqb")
+shader_parameter/direction = Vector2(0.1, 0)
+shader_parameter/speed_scale = 0.6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8j81h"]
+shader = ExtResource("11_1mhuy")
+shader_parameter/direction = Vector2(0.1, 0.1)
+shader_parameter/speed_scale = 0.4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f8sf3"]
+shader = ExtResource("13_6d25a")
+shader_parameter/direction = Vector2(0.1, 0.1)
+shader_parameter/speed_scale = 0.2
+
+[node name="Ground" type="Node2D"]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+light_mask = 513
+position = Vector2(146, -15)
+color = Color(0, 0.760784, 0.929412, 1)
+
+[node name="groundCC" type="AnimationPlayer" parent="."]
+autoplay = "groundcc"
+libraries = {
+"": SubResource("AnimationLibrary_br6fr")
+}
+
+[node name="Flora1" type="TextureRect" parent="."]
+visible = false
+z_index = 2
+material = SubResource("ShaderMaterial_8ldti")
+offset_left = -0.999992
+offset_top = 549.0
+offset_right = 498.0
+offset_bottom = 1049.0
+scale = Vector2(0.73202, 0.710631)
+texture = ExtResource("3_5h5a6")
+stretch_mode = 1
+
+[node name="ground5" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_58qqi")
+offset_left = -49.0
+offset_top = 634.0
+offset_right = 761.0
+offset_bottom = 794.0
+texture = ExtResource("15_1ng5h")
+stretch_mode = 1
+
+[node name="ground4" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_jeiwd")
+offset_left = -40.0
+offset_top = 646.0
+offset_right = 770.0
+offset_bottom = 796.0
+texture = ExtResource("16_trt2q")
+stretch_mode = 1
+
+[node name="ground3" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_2phul")
+offset_left = -42.0
+offset_top = 659.0
+offset_right = 768.0
+offset_bottom = 809.0
+texture = ExtResource("17_iovbe")
+stretch_mode = 1
+
+[node name="ground2" type="TextureRect" parent="."]
+z_index = 2
+material = SubResource("ShaderMaterial_fdmvi")
+offset_left = -42.0
+offset_top = 693.0
+offset_right = 768.0
+offset_bottom = 823.0
+texture = ExtResource("18_a1msd")
+stretch_mode = 1
+
+[node name="ground1" type="TextureRect" parent="."]
+z_index = 2
+material = SubResource("ShaderMaterial_i5l2t")
+offset_left = -40.0
+offset_top = 721.0
+offset_right = 770.0
+offset_bottom = 841.0
+texture = ExtResource("19_0axio")
+stretch_mode = 1
+
+[node name="bubble1" type="TextureRect" parent="."]
+z_index = 7
+material = SubResource("ShaderMaterial_8j81h")
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("15_xsy0o")
+stretch_mode = 1
+
+[node name="bubble3" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_f8sf3")
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("16_d7l1n")
+stretch_mode = 1

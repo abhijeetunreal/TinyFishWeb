@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg51vtmfpt18g"]
+
+[ext_resource type="Script" path="res://Scripts/SpikeSpawner.gd" id="1_6reyq"]
+
+[node name="SpikeSpawner" type="Node2D"]
+position = Vector2(-355, 0)
+script = ExtResource("1_6reyq")
+
+[node name="SpawnPositions" type="Node" parent="."]
+
+[node name="SpawnPos_01" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(349, 88)
+
+[node name="SpawnPos_02" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(351, 232)
+
+[node name="SpawnPos_03" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(350, 145)
+
+[node name="SpawnPos_04" type="Marker2D" parent="SpawnPositions"]
+position = Vector2(351, 254)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

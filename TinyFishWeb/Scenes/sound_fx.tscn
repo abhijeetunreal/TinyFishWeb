@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bra7cpyujj8bu"]
+
+[ext_resource type="AudioStream" uid="uid://xl1n78y8etyw" path="res://Assets/Sounds/Sakura-Girl-Daisy-chosic.com_.mp3" id="1_bsjss"]
+
+[node name="SoundFx" type="Node2D"]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_bsjss")
+autoplay = true
